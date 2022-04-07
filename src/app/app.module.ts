@@ -7,10 +7,13 @@ import { AuthenticationModule } from './features/authentication/authentication.m
 import { ShopModule } from './features/shop/shop.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SpinnerComponent } from './global/spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ShopModule,
     AuthenticationModule,
     BrowserAnimationsModule,
-    
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

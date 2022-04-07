@@ -1,1 +1,40 @@
-<h2>Login Works</h2>
+<div class="backgroundImg flex justify-center" style="width: 100vw;height: 100vh;">
+    <div class="w-full max-w-sm px-7 py-12 m-auto bg-white rounded-2xl shadow-md ">
+        <h1 class="text-4xl  text-center text-gray-700">Login</h1>
+
+        <form class="mt-6"[formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+            <mat-form-field class="w-full" appearance="legacy">
+                <mat-label>Email</mat-label>
+                <input type="text"  matInput formControlName="email"  placeholder="Ex. pat@example.com">             
+                    <mat-error *ngIf="loginFormControl['email'].hasError('required')">
+                        Email is <span class="font-medium">required</span>
+                      </mat-error>
+                    <mat-error *ngIf="loginFormControl['email'].hasError('email')">
+                        Please enter a valid email address
+                      </mat-error>           
+              </mat-form-field>
+
+              <mat-form-field class="w-full" appearance="legacy">
+                <mat-label>password</mat-label>
+                <input type="password" formControlName="password" matInput>
+                <mat-error *ngIf="loginFormControl['password'].hasError('required')">
+                    password is <span class="font-medium">required</span>
+                  </mat-error>
+              </mat-form-field>
+
+            <div class="mt-4">
+                <button type="submit"
+                    class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
+                    Login
+                </button>
+            </div>
+        </form>
+
+       
+
+        
+
+        <p class="mt-8 text-xs font-light text-center text-gray-400"> Forgot Your password? <a href="#"
+                class="font-medium text-indigo-700 hover:underline"> Click Here</a></p>
+    </div>
+</div>
