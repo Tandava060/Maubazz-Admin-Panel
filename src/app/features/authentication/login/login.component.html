@@ -5,7 +5,7 @@
         <form class="mt-6"[formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
             <mat-form-field class="w-full" appearance="legacy">
                 <mat-label>Email</mat-label>
-                <input type="text"  matInput formControlName="email"  placeholder="Ex. pat@example.com">             
+                <input type="text"  matInput formControlName="email" class="focus:outline-none focus:ring-white"  placeholder="Ex. pat@example.com">             
                     <mat-error *ngIf="loginFormControl['email'].hasError('required')">
                         Email is <span class="font-medium">required</span>
                       </mat-error>
@@ -16,7 +16,7 @@
 
               <mat-form-field class="w-full" appearance="legacy">
                 <mat-label>password</mat-label>
-                <input type="password" formControlName="password" matInput>
+                <input type="password" formControlName="password" class="focus:outline-none focus:ring-white" matInput>
                 <mat-error *ngIf="loginFormControl['password'].hasError('required')">
                     password is <span class="font-medium">required</span>
                   </mat-error>

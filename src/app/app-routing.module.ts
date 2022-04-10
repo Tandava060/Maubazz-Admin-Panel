@@ -6,6 +6,11 @@ const routes: Routes = [
     path: "auth",
     loadChildren: () =>
     import ('./features/authentication/authentication-routing.module').then((m) => m.AuthenticationRoutingModule),
+  },
+  {
+    path: "shop/:id",
+    loadChildren: () =>
+    import ('./features/shop/shop-routing.module').then((m) => m.ShopRoutingModule),
   }
 ];
 

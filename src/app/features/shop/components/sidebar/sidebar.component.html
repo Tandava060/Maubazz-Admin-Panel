@@ -1,0 +1,36 @@
+<div class=" w-1/6 2xl:w-[14%]  fixed">
+    <div class="flex flex-col w-[100%] h-screen px-5 py-2 bg-indigo-900 border-r">
+  
+        <div class="flex flex-col  flex-1 mt-6">
+            
+    
+            <nav class="flex flex-col justify-between">
+    
+                <a class="flex px-5 py-3 mt-5 text-white transition-colors duration-200 transform  hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']"  routerLink="/shop/:id/dashboard">
+                    <mat-icon>dashboard</mat-icon>
+                     <span class="mx-4 font-medium">Dashboard</span>
+                </a>
+               
+                <a class="flex px-5 py-3 mt-5 text-white transition-colors duration-200 transform  hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']" routerLink="/shop/:id/products">
+                    <mat-icon>local_mall</mat-icon>
+                     <span class="mx-4 font-medium">Products</span>
+                </a>
+      
+                <a class="flex  px-5 py-3 mt-5 text-white transition-colors duration-200 transform hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']" routerLink="/shop/:id/banners">
+                    <mat-icon>image</mat-icon>
+                     <span class="mx-4 font-medium">Banner</span>
+                </a>
+    
+                <a class="flex  px-5 py-3 mt-5 text-white transition-colors duration-200 transform hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']" routerLink="/shop/:id/setting">
+                    <mat-icon>settings</mat-icon>
+                     <span class="mx-4 font-medium">Shop</span>
+                </a>
+               
+      
+                
+            </nav>
+      
+          
+        </div>
+      </div>
+</div>

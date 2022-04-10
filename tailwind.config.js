@@ -3,7 +3,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '2xl': '1380px'
+      }
+    },
   },
   plugins: [require('@tailwindcss/forms'),require('@tailwindcss/typography')],
 }
