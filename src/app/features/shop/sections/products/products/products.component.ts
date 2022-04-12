@@ -24,7 +24,7 @@ var products: Product[] =
       size: ["medium","small","large"],
       quantity: 100,
       description: "Mollit ut veniam non sit. Consequat Lorem cillum ut in labore ipsum sunt laboris mollit nulla. Do sint anim deserunt anim elit commodo tempor. Nostrud laboris est ut aute tempor dolore laborum.\r\n",
-      category: "anim"
+      category: ["anim"]
     },
     {
       id: "625317ecfcb4ded6459b00de",
@@ -40,7 +40,7 @@ var products: Product[] =
       size: ["medium","large","medium"],
       quantity: 62,
       description: "Ad excepteur anim commodo id ea tempor. Laborum proident ex veniam enim nulla velit. Tempor non sunt fugiat proident aliquip ut ad in ea esse enim. Id amet Lorem laboris sint. Cupidatat enim enim culpa excepteur amet do do.\r\n",
-      category: "consequat"
+      category: ["consequat"]
     },
     {
       id: "625317ec5e407ffe891d9377",
@@ -56,7 +56,7 @@ var products: Product[] =
       size: ["large","medium","medium"],
       quantity: 62,
       description: "Ad tempor quis dolor ea proident consequat laboris non irure excepteur amet sint. Do exercitation fugiat mollit voluptate deserunt qui magna commodo eu officia id. In laboris exercitation ex pariatur aute consequat sunt ullamco non minim. Velit incididunt nostrud aliqua elit Lorem cupidatat voluptate.\r\n",
-      category: "cupidatat"
+      category: ["cupidatat"]
     },
     {
       id: "625317ec6bad395b08ccc99a",
@@ -72,7 +72,7 @@ var products: Product[] =
       size: ["medium","small","large"],
       quantity: 32,
       description: "Amet ut velit pariatur enim ad. Nostrud pariatur qui non quis minim qui labore magna exercitation esse nisi. Ipsum in ex cillum tempor nostrud fugiat laboris irure nisi labore. Ad anim ut labore adipisicing sunt mollit.\r\n",
-      category: "in"
+      category: ["in"]
     },
     {
       id: "625317eccef8f09c6a6efbc1",
@@ -88,7 +88,7 @@ var products: Product[] =
       size: ["medium","large","large"],
       quantity: 92,
       description: "Irure occaecat nostrud est commodo enim qui occaecat tempor voluptate nulla ad ipsum. Qui in sunt esse occaecat non elit ullamco magna. Quis cupidatat mollit mollit adipisicing sint laborum sunt cupidatat fugiat ad proident officia. Duis enim amet Lorem ut occaecat est officia. Ut consectetur aliqua laboris labore amet voluptate duis.\r\n",
-      category: "consequat"
+      category: ["consequat"]
     }
   ]
 
@@ -123,6 +123,19 @@ export class ProductsComponent implements AfterViewInit {
     ngAfterViewInit() {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    }
+
+    getExpandToggle():any {
+      return {
+        callExpandToggle: (name:any) => {
+          this.expanderToggle(null)
+        }
+      }
+    }
+
+    expanderToggle(element: Product | null) {
+      console.log(element)
+      this.expandedElement = this.expandedElement === element ? null : element
     }
   
     applyFilter(event: Event) {

@@ -7,7 +7,6 @@ export interface Product {
     size: String[];
     quantity:  Number;
     description: String;
-    category: String;
+    category: String[];
     imgUrl: String[];
-
 }

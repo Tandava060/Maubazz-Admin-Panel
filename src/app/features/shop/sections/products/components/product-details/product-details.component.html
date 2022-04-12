@@ -1,6 +1,151 @@
+<hr>
+
+<div class="flex justify-end mt-6"> 
+  <div>
+<button class="  px-2 rounded-lg mx-1 " [class.hide] = "showBtn" (click)="enableUpdate()"> <mat-icon class="text-indigo-600 transition-colors duration-200 transform hover:text-indigo-400 text-md">mode_edit</mat-icon></button>
+  </div>
+
+  <div>
+    <button class="  px-2 rounded-lg mx-1 " [class.hide] = "!showBtn" (click)="disableUpdate()"> <mat-icon class="text-indigo-600 transition-colors duration-200 transform hover:text-indigo-400 text-md">close</mat-icon></button>
+      </div>
+
+  <div>
+    <button class="  px-2 rounded-lg mx-1"><mat-icon class="text-red-600 transition-colors duration-200 transform hover:text-red-400 text-md">delete</mat-icon></button>
+      </div>
+</div>
 
 
-<div class="mx-8 my-6">
+<div class="mx-8 my-3">
+
+    <h3 class="text-lg">Product Details:</h3>
+    <form class="my-3"  [formGroup] = "updateProductForm" (ngSubmit)="submitForm()" novalidate>
+        <div class="w-[100%]  grid grid-cols-4 gap-4">
+            <mat-form-field  appearance="outline">
+                <mat-label>Product Name</mat-label>
+                <input  matInput formControlName="name" placeholder="e.g Bag" >
+               
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price"   placeholder="e.g 200">
+               
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Discount(%)</mat-label>
+                <input matInput formControlName="discount" placeholder="e.g 5%">
+               
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input class="" matInput formControlName="quantity" placeholder="e.g 50">
+               
+              </mat-form-field>
+
+
+            
+
+<!-- 
+              <mat-form-field appearance="fill">
+                <mat-label>Toppings</mat-label>
+                <mat-select formControlName="toppings" multiple>
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+
+        </div>
+
+        <div class="w-[100%]  grid grid-cols-3 gap-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Available Colors</mat-label>
+                <mat-chip-list #colorChip formControlName="color">
+                  <mat-chip class="bg-black"  *ngFor="let color of updateProductForm.controls['color'].value" (removed)="removeColor(color)">
+                    {{color}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input [class.hide] = "!showBtn" placeholder="Add color"
+                         [matChipInputFor]="colorChip"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="addColor($event)">
+                         
+                </mat-chip-list>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Available size</mat-label>
+                <mat-chip-list #sizeChip formControlName="size">
+                  <mat-chip *ngFor="let size of updateProductForm.controls['size'].value" (removed)="removeSize(size)">
+                    {{size}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input [class.hide] = "!showBtn" placeholder="Add size"
+                         [matChipInputFor]="sizeChip"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="addSize($event)">
+                         
+                </mat-chip-list>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-chip-list #categoryChip formControlName="category">
+                  <mat-chip *ngFor="let category of updateProductForm.controls['category'].value" (removed)="removeCategory(category)">
+                    {{category}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input [class.hide] = "!showBtn" placeholder="Add category"
+                         [matChipInputFor]="categoryChip"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="addCategory($event)">
+                         
+                </mat-chip-list>
+              </mat-form-field>
+        </div>
+
+        <mat-form-field class="w-[100%] " appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" class="h-[100px]" placeholder="e.g 50"></textarea>
+          </mat-form-field>
+          <button [class.hide] = "!showBtn" type="submit" class="ml-auto flex  items-center px-5 py-2 font-medium text-sm  text-white  transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none">Update</button>
+
+    </form>
+</div>
+
+<div class="mx-8 my-3"> 
+  <h3 class="text-lg">Product Images:</h3>
+ 
+
+<div class="flex justify-end "> 
+  <button class="flex  items-center font-medium text-sm   transition-colors duration-200 transform text-indigo-600 hover:text-indigo-500">
+           
+    <span class="mx-1 text-sm">Add Image</span>
+    <mat-icon>add</mat-icon>
+</button>
+</div>
+
+<div>
+  <div class="w-[100%]  grid grid-cols-6 gap-12">
+    <div *ngFor="let img of product.imgUrl" >
+      <img  src={{img}}>
+    <button class="flex mx-auto my-4 items-center font-medium text-sm   transition-colors duration-200 transform text-red-600 hover:text-red-500">
+           
+      <span class="mx-1 text-sm">Delete Image</span>
+      <mat-icon>delete</mat-icon>
+  </button>
+</div>
     
-    <p>{{product.name}}</p>
+  </div>
+</div>
+
 </div>
