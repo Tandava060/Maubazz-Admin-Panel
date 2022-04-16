@@ -17,6 +17,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
 import { ProductDetailsComponent } from './sections/products/components/product-details/product-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ImgUploadComponent } from './sections/products/components/img-upload/img-upload.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsComponent,
     ShopSettingComponent,
     DashboardComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ImgUploadComponent
   ],
   imports: [
     CommonModule,

@@ -8,5 +8,8 @@ export interface Product {
     quantity:  Number;
     description: String;
     category: String[];
-    imgUrl: String[];
+    img: {
+        url: String;
+        color: String
+    }[];
 }

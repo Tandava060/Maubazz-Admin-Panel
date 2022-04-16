@@ -21,10 +21,11 @@ export class ProductDetailsComponent implements OnInit {
 
   updateProductForm = null;
   public showBtn = false;
-
+  public showImageBtn = false;
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  
 
   constructor(private fb: FormBuilder) { }
 
@@ -49,6 +50,14 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
+ 
+  showUpdateImg():void {
+  this.showImageBtn = true;
+  }
+
+  hideUpdateImg() {
+  this.showImageBtn = false;
+  }
 
   enableUpdate():void {
     for (var control in this.updateProductForm.controls) {
@@ -118,6 +127,10 @@ export class ProductDetailsComponent implements OnInit {
 
   submitForm() {
     console.log(this.updateProductForm.value)
+  }
+
+  addImage() {
+
   }
 
 }

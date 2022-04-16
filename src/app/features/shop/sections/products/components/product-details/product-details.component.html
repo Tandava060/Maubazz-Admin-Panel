@@ -44,17 +44,6 @@
                
               </mat-form-field>
 
-
-            
-
-<!-- 
-              <mat-form-field appearance="fill">
-                <mat-label>Toppings</mat-label>
-                <mat-select formControlName="toppings" multiple>
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                </mat-select>
-              </mat-form-field> -->
-
         </div>
 
         <div class="w-[100%]  grid grid-cols-3 gap-4">
@@ -127,19 +116,25 @@
  
 
 <div class="flex justify-end "> 
-  <button class="flex  items-center font-medium text-sm   transition-colors duration-200 transform text-indigo-600 hover:text-indigo-500">
+  <button [class.hide] = "showImageBtn" (click)="showUpdateImg()" class="flex  items-center font-medium text-sm   transition-colors duration-200 transform text-indigo-600 hover:text-indigo-500">
            
     <span class="mx-1 text-sm">Add Image</span>
     <mat-icon>add</mat-icon>
 </button>
+<div>
+  <button class="  px-2 rounded-lg mx-1 " [class.hide] = "!showImageBtn" (click)="hideUpdateImg()"> <mat-icon class="text-indigo-600 transition-colors duration-200 transform hover:text-indigo-400 text-md">close</mat-icon></button>
+    </div>
+</div>
+<div [class.hide] = "!showImageBtn">
+  <app-img-upload [colors]="updateProductForm.controls['color'].value"></app-img-upload>
 </div>
 
-<div>
+
+<div >
   <div class="w-[100%]  grid grid-cols-6 gap-12">
-    <div *ngFor="let img of product.imgUrl" >
-      <img  src={{img}}>
+    <div *ngFor="let img of product.img" >
+      <img  src={{img.url}}>
     <button class="flex mx-auto my-4 items-center font-medium text-sm   transition-colors duration-200 transform text-red-600 hover:text-red-500">
-           
       <span class="mx-1 text-sm">Delete Image</span>
       <mat-icon>delete</mat-icon>
   </button>
