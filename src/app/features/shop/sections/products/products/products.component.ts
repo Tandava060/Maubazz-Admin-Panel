@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models/product';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NewProductComponent } from '../components/new-product/new-product.component';
 
 
 
@@ -138,7 +140,7 @@ export class ProductsComponent implements AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
   
-    constructor() {}
+    constructor(public dialog: MatDialog) {}
   
     ngAfterViewInit() {
       this.dataSource.paginator = this.paginator;
@@ -166,4 +168,17 @@ export class ProductsComponent implements AfterViewInit {
         this.dataSource.paginator.firstPage();
       }
     }
+
+
+    openDialog(): void {
+      const dialogRef = this.dialog.open(NewProductComponent, {
+        width: '75%',
+    
+      });
+  
+   
+    }
   }
+  
+
+  

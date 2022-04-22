@@ -15,9 +15,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 import { ProductDetailsComponent } from './sections/products/components/product-details/product-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ImgUploadComponent } from './sections/products/components/img-upload/img-upload.component';
+import { NewProductComponent } from './sections/products/components/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ImgUploadComponent } from './sections/products/components/img-upload/im
     ShopSettingComponent,
     DashboardComponent,
     ProductDetailsComponent,
-    ImgUploadComponent
+    ImgUploadComponent,
+    NewProductComponent
   ],
   imports: [
     CommonModule,
@@ -40,8 +43,9 @@ import { ImgUploadComponent } from './sections/products/components/img-upload/im
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    ReactiveFormsModule,
-    MatSelectModule
+    ReactiveFormsModule, 
+    MatSelectModule,
+    MatDialogModule
   ]
 })
 export class ShopModule { }
