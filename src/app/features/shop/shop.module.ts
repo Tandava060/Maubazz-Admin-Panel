@@ -20,6 +20,8 @@ import { ProductDetailsComponent } from './sections/products/components/product-
 import { ReactiveFormsModule } from '@angular/forms';
 import { ImgUploadComponent } from './sections/products/components/img-upload/img-upload.component';
 import { NewProductComponent } from './sections/products/components/new-product/new-product.component';
+import { InterceptorInterceptor } from 'src/app/services/interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,11 @@ import { NewProductComponent } from './sections/products/components/new-product/
     ReactiveFormsModule, 
     MatSelectModule,
     MatDialogModule
-  ]
+  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: InterceptorInterceptor, 
+    multi: true
+  }],
 })
 export class ShopModule { }

@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './global/spinner/spinner.component';
+import { InterceptorInterceptor } from './services/interceptor.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,14 @@ import { SpinnerComponent } from './global/spinner/spinner.component';
     ShopModule,
     AuthenticationModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: InterceptorInterceptor, 
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
