@@ -31,7 +31,7 @@ export class NewProductComponent implements OnInit {
     color: [ '', [Validators.required]]
   })
 
-  preview: String;
+  preview: String[] = [];
  colors: String[];
 
   addOnBlur = true;
@@ -70,6 +70,9 @@ export class NewProductComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       this.newProductForm.controls['size'].value.push(value);
+      this.newProductForm.controls['size'].updateValueAndValidity()
+
+  
     }
     event.chipInput!.clear();
   }
@@ -79,6 +82,8 @@ export class NewProductComponent implements OnInit {
 
     if (index >= 0) {
       this.newProductForm.controls['size'].value.splice(index, 1);
+      this.newProductForm.controls['size'].updateValueAndValidity()
+
     }
   }
 
@@ -86,6 +91,9 @@ export class NewProductComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       this.newProductForm.controls['category'].value.push(value);
+      this.newProductForm.controls['category'].updateValueAndValidity()
+
+
     }
     event.chipInput!.clear();
   }
@@ -95,12 +103,11 @@ export class NewProductComponent implements OnInit {
 
     if (index >= 0) {
       this.newProductForm.controls['category'].value.splice(index, 1);
+      this.newProductForm.controls['category'].updateValueAndValidity()
     }
   }
 
   addImage() {
-    
-  
     this.images.push(this.addImageForm);
   }
 
@@ -108,18 +115,20 @@ export class NewProductComponent implements OnInit {
     return this.newProductForm.controls["images"] as FormArray;
   }
 
-  uploadFile(event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   this.addImageForm.patchValue({
-  //     url: file
-  //   });
-  //   this.addImageForm.get('url').updateValueAndValidity()
+  uploadFile(event , i: number) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.images.controls[0].patchValue({
+      url: file
+    });
+    this.images.controls[0].get('url').updateValueAndValidity()
     
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.preview = reader.result as string;
-  //   }
-  //   reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.onload = () => {
+      let result = reader.result as string
+
+      this.preview.push(result) ;
+    }
+    reader.readAsDataURL(file)
   }
 
 

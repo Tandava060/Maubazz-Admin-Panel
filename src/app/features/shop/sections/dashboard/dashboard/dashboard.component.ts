@@ -18,11 +18,11 @@ export class DashboardComponent implements OnInit {
     //     console.log(data)
     //   }
     // })
-    this.api.testServer().subscribe({
-      next: (res)=> {console.log(res)},
-      error: (err) => {console.log(err)},
-      complete: () => {console.log("complete")}
-    })
+    // this.api.testServer().subscribe({
+    //   next: (res)=> {console.log(res)},
+    //   error: (err) => {console.log(err)},
+    //   complete: () => {console.log("complete")}
+    // })
   }
 
 }
