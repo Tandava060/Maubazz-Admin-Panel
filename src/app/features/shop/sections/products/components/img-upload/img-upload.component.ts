@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ProductApiService } from 'src/app/services/product-api.service';
 
 @Component({
   selector: 'app-img-upload',
@@ -11,7 +12,7 @@ export class ImgUploadComponent implements OnInit {
   preview: String;
   @Input() colors: String[];
  
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private api:ProductApiService) { }
 
  
 
@@ -45,5 +46,10 @@ export class ImgUploadComponent implements OnInit {
 
   addImage() {
     console.log(this.addImageForm.value)
+    this.api.addImage(this.addImageForm.value).subscribe({
+      next: (res)=> {console.log(res)},
+      error: (err) => {console.log(err)},
+      complete: () => {console.log("complete")}
+    })
   }
 }

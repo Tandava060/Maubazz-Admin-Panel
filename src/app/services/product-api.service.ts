@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -17,6 +17,16 @@ export class ProductApiService {
       "sqlqwe" : "delete from shop_owner"
     }
     return this.http.post("http://localhost:4000/api/test", data)
+    .pipe(map((data:any)=>{
+      return data
+    }))
+  }
+
+  addImage(data:any) {
+    const postData = new FormData();
+    postData.append("color",data.color);
+    postData.append("image", data.url)
+    return this.http.post("http://localhost:4000/api/image/add-image", postData)
     .pipe(map((data:any)=>{
       return data
     }))

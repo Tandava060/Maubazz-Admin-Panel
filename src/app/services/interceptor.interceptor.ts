@@ -15,12 +15,11 @@ export class InterceptorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log(request.body)
     request = request.clone({
-      body: {
-        auth: {
-          api_key: "jdnvkendklmldkgbmkb"
-        },
-        data: request.body
-      }
+      setHeaders: {
+        Authorization: "jdnvkendklmldkgbmkb"
+        
+      },
+     
     })
      
     
