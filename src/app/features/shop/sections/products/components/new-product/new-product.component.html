@@ -1,168 +1,170 @@
 <div class="mx-8 my-3">
 
   <h3 class="text-lg">New Product:</h3>
- <mat-dialog-content>
-  <form class="" [formGroup]="newProductForm" (ngSubmit)="submitForm()" novalidate>
-    <button type="submit"
-      class="ml-auto  mb-5 flex  items-center px-5 py-2 font-medium text-sm  text-white  transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none">Add</button>
+  <mat-dialog-content>
+    <form class="" [formGroup]="newProductForm" (ngSubmit)="submitForm()" novalidate>
+      <button type="submit"
+        class="ml-auto  mb-5 flex  items-center px-5 py-2 font-medium text-sm  text-white  transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none">Add</button>
 
-    <div class="w-[100%]  grid grid-cols-4 gap-4">
-      <mat-form-field appearance="outline">
-        <mat-label>Product Name</mat-label>
-        <input matInput formControlName="name" placeholder="e.g Bag">
+      <div class="w-[100%]  grid grid-cols-4 gap-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Product Name</mat-label>
+          <input matInput formControlName="name" placeholder="e.g Bag">
 
-      </mat-form-field>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Price</mat-label>
-        <input matInput formControlName="price" placeholder="e.g 200">
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" placeholder="e.g 200">
 
-      </mat-form-field>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Discount(%)</mat-label>
-        <input matInput formControlName="discount" placeholder="e.g 5%">
+        <mat-form-field appearance="outline">
+          <mat-label>Discount(%)</mat-label>
+          <input matInput formControlName="discount" placeholder="e.g 5%">
 
-      </mat-form-field>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Quantity</mat-label>
-        <input class="" matInput formControlName="quantity" placeholder="e.g 50">
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input class="" matInput formControlName="quantity" placeholder="e.g 50">
 
-      </mat-form-field>
+        </mat-form-field>
 
-    </div>
-
-    <div class="w-[100%]  grid grid-cols-3 gap-4">
-      <mat-form-field appearance="outline">
-        <mat-label>Available Colors</mat-label>
-        <mat-chip-list #colorChip formControlName="color">
-          <mat-chip class="bg-black" *ngFor="let color of newProductForm.controls['color'].value"
-            (removed)="removeColor(color)">
-            {{color}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip>
-          <input placeholder="Add color" [matChipInputFor]="colorChip"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addColor($event)">
-
-        </mat-chip-list>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Available size</mat-label>
-        <mat-chip-list #sizeChip formControlName="size">
-          <mat-chip *ngFor="let size of newProductForm.controls['size'].value" (removed)="removeSize(size)">
-            {{size}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip>
-          <input placeholder="Add size" [matChipInputFor]="sizeChip"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addSize($event)">
-
-        </mat-chip-list>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Category</mat-label>
-        <mat-chip-list #categoryChip formControlName="category">
-          <mat-chip *ngFor="let category of newProductForm.controls['category'].value"
-            (removed)="removeCategory(category)">
-            {{category}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip>
-          <input placeholder="Add category" [matChipInputFor]="categoryChip"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addCategory($event)">
-
-        </mat-chip-list>
-      </mat-form-field>
-    </div>
-
-    <mat-form-field class="w-[100%] " appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" class="h-[100px]" placeholder="e.g 50"></textarea>
-    </mat-form-field>
-
-
-    <div>
-      <h3 class="ml-5 mt-8">Upload Image: </h3>
-      <div class="flex justify-end">
-        <a (click)="addImage()" mat-mini-fab class="bg-indigo-600 px-2 pt-2 pb-0 text-white rounded-full hover:bg-indigo-500">
-          <mat-icon>add</mat-icon>
-        </a>
       </div>
-    
-      <ng-container formArrayName="images">
-        <div class="grid grid-cols-3 gap-4">
-          <ng-container *ngFor="let image of images.controls; let i = index;">
-            <div  [formGroup]="addImageForm">
-        
-           
-            <div>
-              <div class="flex justify-center " *ngIf=" preview && preview.length > 0 &&  preview.length > i ">
-                <div class="text-center">
-                    <img [src]="preview[i]" class="w-[200px] mb-3">
-                <p>{{i }}</p>
-                </div>
-              </div>
-            <div class="w-[100%] my-8  gap-4">
-    
-              <div class="flex justify-center ">
-                <div class="max-w-2xl rounded-lg shadow-xl bg-gray-50">
-                    <div class="m-4">
-       
-                        <div class="flex items-center justify-center w-full">
-                            <label
-                                class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                                <div class="flex flex-col items-center justify-center pt-7">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400 group-hover:text-gray-600"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                        Upload Image</p>
-                                </div>
-                                <input type="file" accept="image/*"  class="opacity-0"  (change)="uploadFile($event, i)"/>
-                            </label>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div> 
-      
-    
-  <div class="text-center mt-4">
-    <mat-form-field appearance="outline">
-      <mat-label>Select Color</mat-label>
-      <mat-select formControlName="color" name="color">
-          <mat-option value="null">
-              null
-            </mat-option>
-        <mat-option *ngFor="let color of newProductForm.controls['color'].value" [value]="color">
-          {{color}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-      
-            </div>
-            </div>
-            
-            
-            </div>
-          </ng-container>
-        </div>
-      </ng-container>
-    </div>
 
-  </form>
- </mat-dialog-content>
+      <div class="w-[100%]  grid grid-cols-3 gap-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Available Colors</mat-label>
+          <mat-chip-list #colorChip formControlName="color">
+            <mat-chip class="bg-black" *ngFor="let color of newProductForm.controls['color'].value"
+              (removed)="removeColor(color)">
+              {{color}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="Add color" [matChipInputFor]="colorChip"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addColor($event)">
+
+          </mat-chip-list>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Available size</mat-label>
+          <mat-chip-list #sizeChip formControlName="size">
+            <mat-chip *ngFor="let size of newProductForm.controls['size'].value" (removed)="removeSize(size)">
+              {{size}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="Add size" [matChipInputFor]="sizeChip"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addSize($event)">
+
+          </mat-chip-list>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-chip-list #categoryChip formControlName="category">
+            <mat-chip *ngFor="let category of newProductForm.controls['category'].value"
+              (removed)="removeCategory(category)">
+              {{category}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="Add category" [matChipInputFor]="categoryChip"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addCategory($event)">
+
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="w-[100%] " appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" class="h-[100px]" placeholder="e.g 50"></textarea>
+      </mat-form-field>
+
+
+      <div>
+        <h3 class="ml-5 mt-8">Upload Image: </h3>
+        <div class="flex justify-end">
+          <a (click)="addImage()" mat-mini-fab
+            class="bg-indigo-600 px-2 pt-2 pb-0 text-white rounded-full hover:bg-indigo-500">
+            <mat-icon>add</mat-icon>
+          </a>
+        </div>
+
+        <ng-container formArrayName="images">
+          <div class="grid grid-cols-3 gap-4">
+            <ng-container *ngFor="let image of images.controls; let i = index;">
+              <div [formGroup]="addImageForm">
+
+
+                <div>
+                  <div class="flex justify-center " *ngIf=" preview && preview.length > 0 &&  preview.length > i ">
+                    <div class="text-center">
+                      <img [src]="preview[i]" class="w-[200px] mb-3">
+                      <p>{{i }}</p>
+                    </div>
+                  </div>
+                  <div class="w-[100%] my-8  gap-4">
+
+                    <div class="flex justify-center ">
+                      <div class="max-w-2xl rounded-lg shadow-xl bg-gray-50">
+                        <div class="m-4">
+
+                          <div class="flex items-center justify-center w-full">
+                            <label
+                              class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                              <div class="flex flex-col items-center justify-center pt-7">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                  class="w-8 h-8 text-gray-400 group-hover:text-gray-600" fill="none"
+                                  viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                                <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                                  Upload Image</p>
+                              </div>
+                              <input type="file" accept="image/*" class="opacity-0" (change)="uploadFile($event, i)" />
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+
+                    <div class="text-center mt-4">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Select Color</mat-label>
+                        <mat-select formControlName="color" name="color">
+                          <mat-option value="null">
+                            null
+                          </mat-option>
+                          <mat-option *ngFor="let color of newProductForm.controls['color'].value" [value]="color">
+                            {{color}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+
+    </form>
+  </mat-dialog-content>
 </div>
