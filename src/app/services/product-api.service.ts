@@ -16,7 +16,7 @@ export class ProductApiService {
       "sql" : "select * from shop_category",
       "sqlqwe" : "delete from shop_owner"
     }
-    return this.http.post("http://localhost:4000/api/test", data)
+    return this.http.post("/api/test", data)
     .pipe(map((data:any)=>{
       return data
     }))
@@ -26,7 +26,7 @@ export class ProductApiService {
     const postData = new FormData();
     postData.append("color",data.color);
     postData.append("image", data.url)
-    return this.http.post("http://localhost:4000/api/image/add-image", postData)
+    return this.http.post("/api/image/add-image", postData)
     .pipe(map((data:any)=>{
       return data
     }))
