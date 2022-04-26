@@ -20,5 +20,8 @@ export class AuthenticationService {
     return !!localStorage.getItem('user_session')
   }
 
+  logout() {
+    localStorage.clear()
+  }
 
 }
