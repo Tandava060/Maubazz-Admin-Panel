@@ -1,0 +1,65 @@
+<div class="mx-24 my-12">
+
+    <div class="flex justify-end items-center mb-8">
+     <div class="relative text-indigo-800 bg-white w-56  mx-5">
+      
+         <input (keyup)="applyFilter($event)" placeholder="Ex. order" #input class="w-60 py-2 pr-12 text-sm focus:outline-none focus:ring-white  shadow-lg border-none  bg-white rounded-md pl-5  "  >
+        <span class="absolute inset-y-0 right-0 flex items-center ">
+               <mat-icon>search</mat-icon>
+         </span>
+       </div>
+ 
+    </div>
+       
+       <div class="mat-elevation-z3 w-[100%]">
+ 
+         <table mat-table  [dataSource]="dataSource" multiTemplateDataRows
+        class="mat-elevation-z8 w-[100%]">
+        <ng-container matColumnDef="no">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> No </th>
+         <td mat-cell *matCellDef="let row;let i = dataIndex;"> {{i + 1}} </td>
+       </ng-container>
+
+       <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Id </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+   
+       <ng-container matColumnDef="userId">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> user Id </th>
+         <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+       </ng-container>
+   
+       <ng-container matColumnDef="paymentStatus">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> payment Status </th>
+         <td mat-cell *matCellDef="let row"> {{row.paymentStatus}} </td>
+       </ng-container>
+   
+       <ng-container matColumnDef="deliveryStatus">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> delivery Status </th>
+         <td mat-cell *matCellDef="let row"> {{row.deliveryStatus}} </td>
+       </ng-container>
+ 
+   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+   <ng-container matColumnDef="expandedDetail">
+     <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+       <div class="order_detail"
+            [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+       <app-order-details  class="w-[100%]" [order]="element" [expandToggle]="getExpandToggle()"></app-order-details>
+          
+       </div>
+     </td>
+   </ng-container>
+ 
+   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+       class="order_row"
+       [class.example-expanded-row]="expandedElement === element"
+       (click)="expanderToggle(element) ">
+   </tr>
+   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+ </table>
+       
+         <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+       </div>
+ </div> 

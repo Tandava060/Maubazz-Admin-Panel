@@ -6,18 +6,17 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
-constructor(private auth: AuthenticationService, private router: Router) {}
+export class UserAuthGuard implements CanActivate {
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
   canActivate() {
-    if (this.auth.isLoggedIn()) {
+    var user_session = JSON.parse(localStorage.getItem('user_session'))  ;
+    if (this.auth.isLoggedIn() && (user_session.access_type == 'admin' || user_session.access_type == 'user')) {
       return true;
     }
       
       this.router.navigate(['login'])
       return false;
   }
-
   
 }

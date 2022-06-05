@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './global/spinner/spinner.component';
 import { InterceptorInterceptor } from './services/interceptor.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminModule } from './features/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AppRoutingModule,
     ShopModule,
     AuthenticationModule,
+    AdminModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule

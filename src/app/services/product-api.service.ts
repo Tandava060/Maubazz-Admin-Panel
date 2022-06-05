@@ -26,7 +26,14 @@ export class ProductApiService {
     const postData = new FormData();
     postData.append("color",data.color);
     postData.append("image", data.url)
-    return this.http.post("/api/image/add-image", postData)
+    return this.http.post("http://130.61.174.76:4000/api/image/add-image", postData)
+    .pipe(map((data:any)=>{
+      return data
+    }))
+  }
+
+  addProd(data:any) {
+    return this.http.post("http://130.61.174.76:4000/api/owner/add-product", data)
     .pipe(map((data:any)=>{
       return data
     }))

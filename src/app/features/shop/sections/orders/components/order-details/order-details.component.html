@@ -1,0 +1,61 @@
+<div class="mt-4 mx-8 my-3">
+     <h3 class="text-lg">Order Details:</h3>
+    <div class="mt-3 w-[100%]  grid grid-cols-3 gap-4">
+        <mat-form-field  appearance="outline">
+            <mat-label>Id</mat-label>
+            <input  matInput [value]="order.id" disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>User Id</mat-label>
+            <input  matInput [value]="order.userId" disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Payment Status</mat-label>
+            <input  matInput [value]="order.paymentStatus? 'Paid' : 'Not Paid' " disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Date Purchased</mat-label>
+            <input  matInput [value]="order.date | date: 'mediumDate'" disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Delivery Date</mat-label>
+            <input  matInput [value]="order.deliveryDate | date: 'mediumDate'" disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Delivery Status</mat-label>
+            <input  matInput [value]="order.deliveryStatus? 'Delivered' : 'Not Delivered' " disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Payment Type </mat-label>
+            <input  matInput [value]="order.paymentType " disabled>
+        </mat-form-field>
+    </div>
+
+    <h3 class="text-lg">All Products:</h3>
+
+    <div *ngFor="let prod of order.products" class="mt-3 w-[100%]  grid grid-cols-3 gap-4">
+        <mat-form-field  appearance="outline">
+            <mat-label>Name</mat-label>
+            <input  matInput [value]="prod.name" disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Qty</mat-label>
+            <input  matInput [value]="prod.quantity" disabled>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Price</mat-label>
+            <input  matInput [value]="prod.price" disabled>
+        </mat-form-field>
+    </div>
+    <h3 class="text-lg text-right">Total Price:  Rs{{total}}</h3>
+
+
+</div>

@@ -21,23 +21,32 @@ export class InterceptorInterceptor implements HttpInterceptor {
           Authorization: "jdnvkendklmldkgbmkb"
         }
       })
-      return next.handle(request);
+      console.log("tada");
     }else{
+      var bodyData = request.body;
+      console.log("wada");
+      console.log(bodyData);
       request = request.clone({
         setHeaders: {
           Authorization: "jdnvkendklmldkgbmkb"
         },
         body: {
-          auth: this.getSessionUser(),
-          data: request.body
+          data: bodyData,
+          auth: {
+            user: this.getSessionUser(),
+            api_key: "7d2059f8-6c96-41d7-b04d-310dc1fe26ef"
+          },
+         
         }
       })
-      return next.handle(request);
+      
     }
+    console.log(request);
+      return next.handle(request);
   }
 
  getSessionUser() {
-    var user_session : any = localStorage.getItem('user_session');
+    var user_session : any =JSON.parse(localStorage.getItem('user_session'))  ;
     console.log(localStorage.getItem('user_session'));
     if(user_session == null){
       return "";

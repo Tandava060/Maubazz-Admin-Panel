@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './features/authentication/auth.guard';
+import { AdminAuthGuard } from './features/authentication/admin-auth.guard';
+import { UserAuthGuard } from './features/authentication/user-auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +12,12 @@ const routes: Routes = [
   {
     path: "shop",
     loadChildren: () =>
-    import ('./features/shop/shop-routing.module').then((m) => m.ShopRoutingModule), canActivate: [AuthGuard],
+    import ('./features/shop/shop-routing.module').then((m) => m.ShopRoutingModule), canActivate: [AdminAuthGuard],
+  },
+  {
+    path: "admin",
+    loadChildren: () =>
+    import ('./features/admin/admin-routing.module').then((m) => m.AdminRoutingModule), canActivate: [AdminAuthGuard],
   }
 ];
 

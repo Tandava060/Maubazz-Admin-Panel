@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.order_row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.order_row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .order_row td {
+    border-bottom-width: 0;
+  }
+  
+  .order_detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .order_diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .order_symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .order_description {
+    padding: 16px;
+  }
+  
+  .order_description-attribution {
+    opacity: 0.5;
+  }

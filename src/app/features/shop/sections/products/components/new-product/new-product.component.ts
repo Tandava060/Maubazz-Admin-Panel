@@ -3,6 +3,8 @@ import { AbstractControl, FormArray, FormBuilder, ValidationErrors, ValidatorFn,
 import { MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER, } from '@angular/cdk/keycodes';
 import { Product } from 'src/app/models/product';
+import { ProductApiService } from 'src/app/services/product-api.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-new-product',
@@ -38,14 +40,62 @@ export class NewProductComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private api: ProductApiService, private spinner: SpinnerService) { }
 
   ngOnInit(): void {
     this.addImage()
   }
 
   submitForm() {
-    console.log(this.newProductForm.value)
+    let imgs: String[] = [];
+    this.spinner.showSpinner()
+    this.newProductForm.get('images').value.forEach(img => {
+      
+      this.api.addImage(img).subscribe({ 
+        next: (res)=> {
+          console.log(res)
+          imgs.push( res.data[0])
+      },
+      error: (err) => {
+        console.log(err)
+      },
+      complete: () => {
+      }
+
+    })
+  })
+
+  let data = {
+    product : {
+      title: this.newProductForm.get('name').value,
+			description: this.newProductForm.get('description').value,
+			color: this.newProductForm.get('color').value,
+			price: this.newProductForm.get('price').value,
+			size:this.newProductForm.get('size').value,
+			stock:this.newProductForm.get('quantity').value,
+			discount: this.newProductForm.get('discount').value,
+			image: imgs ,
+			category: this.newProductForm.get('category').value
+		},
+		shop: {
+			shop_id:1
+		}
+  };
+this.spinner.showSpinner();
+  this.api.addProd(data).subscribe({ 
+    next: (res)=> {
+      console.log(res)
+  },
+  error: (err) => {
+    console.log(err);
+    this.spinner.hideSpinner();
+  },
+  complete: () => {
+    this.spinner.hideSpinner();
+  }
+
+})
+
   }
 
   addColor(event: MatChipInputEvent): void {
