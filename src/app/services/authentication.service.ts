@@ -10,7 +10,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   login(data:any): Observable<any> {
-    return this.http.post("/api/login", data)
+    return this.http.post("http://localhost:4000/api/login", data)
     .pipe(map((data:any)=>{
       return data
     }))

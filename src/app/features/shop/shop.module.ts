@@ -22,7 +22,6 @@ import { ImgUploadComponent } from './sections/products/components/img-upload/im
 import { NewProductComponent } from './sections/products/components/new-product/new-product.component';
 import { InterceptorInterceptor } from 'src/app/services/interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 @NgModule({
   declarations: [
     ShopComponent,
@@ -33,7 +32,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     DashboardComponent,
     ProductDetailsComponent,
     ImgUploadComponent,
-    NewProductComponent
+    NewProductComponent,
   ],
   imports: [
     CommonModule,

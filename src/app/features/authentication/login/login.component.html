@@ -4,14 +4,11 @@
 
         <form class="mt-6"[formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
             <mat-form-field class="w-full" appearance="legacy">
-                <mat-label>Email</mat-label>
-                <input type="text"  matInput formControlName="email" class="focus:outline-none focus:ring-white"  placeholder="Ex. pat@example.com">             
-                    <mat-error *ngIf="loginFormControl['email'].hasError('required')">
-                        Email is <span class="font-medium">required</span>
-                      </mat-error>
-                    <mat-error *ngIf="loginFormControl['email'].hasError('email')">
-                        Please enter a valid email address
-                      </mat-error>           
+                <mat-label>username</mat-label>
+                <input type="text"  matInput formControlName="username" class="focus:outline-none focus:ring-white"  placeholder="Ex. pat@example.com">             
+                    <mat-error *ngIf="loginFormControl['username'].hasError('required')">
+                        username is <span class="font-medium">required</span>
+                      </mat-error>        
               </mat-form-field>
 
               <mat-form-field class="w-full" appearance="legacy">

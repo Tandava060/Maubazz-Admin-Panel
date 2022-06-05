@@ -1,0 +1,12 @@
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: #3f51b5;
+}
+
+.show {
+    display: flex;
+   
+}
+.hide {
+    display: none;  
+    animation: fade_in_show 2.5s
+}
