@@ -1,0 +1,35 @@
+<div class=" w-1/6 2xl:w-[14%]  fixed ">
+    <div class="flex flex-col w-[100%] h-screen px-5 py-2 bg-indigo-800 shadow-inner">
+  
+        <div class="flex flex-col  flex-1 mt-6">
+            
+    
+            <nav class="flex flex-col justify-between">
+    
+                <a class="flex px-5 py-3 mt-5 text-white transition-colors duration-200 transform  hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']"  routerLink="/admin">
+                    <mat-icon>dashboard</mat-icon>
+                     <span class="mx-4 font-medium">Dashboard</span>
+                </a>
+               
+                <a class="flex px-5 py-3 mt-5 text-white transition-colors duration-200 transform  hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']" routerLink="/admin/shops">
+                    <mat-icon>store</mat-icon>
+                     <span class="mx-4 font-medium">Shops</span>
+                </a>
+
+                <a class="flex px-5 py-3 mt-5 text-white transition-colors duration-200 transform  hover:bg-white rounded-lg   hover:text-indigo-900" [routerLinkActive]="['active']" routerLink="/admin/users">
+                    <mat-icon>group</mat-icon>
+                     <span class="mx-4 font-medium">Users</span>
+                </a>
+      
+                <button (click)="logout()" class="flex  px-5 py-3 mt-5 text-white transition-colors duration-200 transform hover:bg-white rounded-lg   hover:text-indigo-900">
+                    <mat-icon>settings</mat-icon>
+                     <span class="mx-4 font-medium">Logout</span>
+                </button>
+      
+                
+            </nav>
+      
+          
+        </div>
+      </div>
+</div>

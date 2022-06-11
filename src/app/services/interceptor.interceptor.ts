@@ -13,7 +13,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
 
   constructor(private auth: AuthenticationService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log(request.url);
     if(request.url.includes("add-image") || request.url.includes("login")){
       request = request.clone({

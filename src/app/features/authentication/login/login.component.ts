@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]]
   })
 
-  constructor(public fb: FormBuilder, private router: Router, private api:AuthenticationService, private spinner: SpinnerService) { }
+  constructor(public fb: FormBuilder, private router: Router, private api:AuthenticationService, private spinner: SpinnerService, private toastr: ToastrService) { }
 
  
 
@@ -41,12 +42,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user_session',JSON.stringify(res.data))
       },
       error: (err) => {
-        console.log(err)
+        console.log(err);
+        this.toastr.error(err.error.error , 'Error');
        this.spinner.hideSpinner();
       },
       complete: () => {
         let user_session = JSON.parse(localStorage.getItem('user_session'));
         this.spinner.hideSpinner();
+        this.toastr.success('Successfully logged in', 'Success');
         if (user_session.access_type == "admin") {
           this.router.navigateByUrl("admin")
         } else {

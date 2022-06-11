@@ -1,0 +1,58 @@
+<div class="mx-8 my-3">
+
+    <h3 class="text-lg">New Shop:</h3>
+    <mat-dialog-content>
+        <form class="" [formGroup]="newShopForm" (ngSubmit)="submitForm()" novalidate>
+            <button type="submit"
+                class="ml-auto  mb-5 flex  items-center px-5 py-2 font-medium text-sm  text-white  transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none">Add</button>
+
+            <div class="w-[100%]  grid grid-cols-3 gap-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Shop Name</mat-label>
+                    <input matInput formControlName="name" placeholder="e.g Addidas">
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>User Name</mat-label>
+                    <input matInput formControlName="user" placeholder="e.g tom">
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Owner Name</mat-label>
+                    <input matInput formControlName="owner" placeholder="e.g tommy weller">
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Tel No</mat-label>
+                    <input class="" matInput formControlName="telNo" placeholder="e.g +230-57896534">
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input class="" matInput formControlName="email" placeholder="e.g tomweller@gmail.com">
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <input class="" matInput formControlName="type" placeholder="e.g shoes">
+
+                </mat-form-field>
+
+            </div>
+
+           
+              
+
+
+           
+
+            
+
+        </form>
+    </mat-dialog-content>
+</div>

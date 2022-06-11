@@ -5,6 +5,7 @@ import {COMMA, ENTER, } from '@angular/cdk/keycodes';
 import { Product } from 'src/app/models/product';
 import { ProductApiService } from 'src/app/services/product-api.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-product',
@@ -40,7 +41,7 @@ export class NewProductComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   
 
-  constructor(private fb: FormBuilder, private api: ProductApiService, private spinner: SpinnerService) { }
+  constructor(private fb: FormBuilder, private api: ProductApiService, private spinner: SpinnerService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.addImage()
@@ -58,8 +59,11 @@ export class NewProductComponent implements OnInit {
       },
       error: (err) => {
         console.log(err)
+     
       },
       complete: () => {
+       
+        
       }
 
     })
@@ -89,9 +93,16 @@ this.spinner.showSpinner();
   error: (err) => {
     console.log(err);
     this.spinner.hideSpinner();
+    this.toastr.error(err.error.error , 'Error');
   },
   complete: () => {
     this.spinner.hideSpinner();
+    this.toastr.success('Successfully added product', 'Success');
+    this.newProductForm.reset();
+    this.addImageForm.reset();
+    this.colors =[];
+    this.preview = null;
+    this.color = [];
   }
 
 })
